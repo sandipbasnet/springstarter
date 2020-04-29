@@ -36,4 +36,17 @@ public class MainController {
             return "login";
         }
     }
+    
+    @PostMapping("/registration")
+    public String userRegistration(@RequestParam("username") String username, @RequestParam("email") String email, @RequestParam("password") String password, Model model){
+    				System.out.println(email+" "+ password);
+    				boolean isSaved = new UserDao().registerUser(username, email, password);
+    				if(isSaved) {
+    					return "login";
+    				}
+    				else {
+    					model.addAttribute("errMsg", "User creation Failed!");
+    					return "register";
+    				}
+    }
 }

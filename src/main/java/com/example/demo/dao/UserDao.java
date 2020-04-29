@@ -25,5 +25,24 @@ public class UserDao {
 		
 		return passFromDb;
 	}
+	
+	public boolean registerUser(String username, String email, String password) {
+		boolean isSaved = false;
+		Connection conn = new DBConnection().getDbConnection();
+		try {
+			PreparedStatement pstmt = conn.prepareStatement("INSERT INTO users_tbl(username, email, password) VALUES (?,?,?)");
+			pstmt.setString(1, username);
+			pstmt.setString(2, email);
+			pstmt.setString(3, password);
+			int i = pstmt.executeUpdate();
+			if(i>0) {
+				isSaved = true;
+			}
+			
+		}catch(Exception e) {
+			System.err.println("Exception during new user registration");
+		}
+		return isSaved;
+	}
 
 }
