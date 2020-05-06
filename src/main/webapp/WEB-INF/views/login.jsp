@@ -9,7 +9,8 @@
 			<h1 class="heading">User Login</h1>
 			Username:<input type="text" placeholder="username" name="username"/><br/>
 			Password:<input type="password" placeholder="password" name="password"/><br/>
-			<input type="submit" value="Login"/>
+			<input type="submit" value="Login"/><br /> 
+			<a href="${pageContext.request.contextPath}/changePassword">Change Password</a>
 		</form>
 		<p>${errmsg}</p>
 	</center>

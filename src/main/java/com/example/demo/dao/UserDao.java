@@ -26,14 +26,16 @@ public class UserDao {
 		return passFromDb;
 	}
 	
-	public boolean registerUser(String username, String email, String password) {
+	public boolean registerUser(String username, String dob, String gender, String email, String password) {
 		boolean isSaved = false;
 		Connection conn = new DBConnection().getDbConnection();
 		try {
-			PreparedStatement pstmt = conn.prepareStatement("INSERT INTO users_tbl(username, email, password) VALUES (?,?,?)");
+			PreparedStatement pstmt = conn.prepareStatement("INSERT INTO users_tbl(username, email, password, gender, dob) VALUES (?,?,?,?,?)");
 			pstmt.setString(1, username);
 			pstmt.setString(2, email);
 			pstmt.setString(3, password);
+			pstmt.setString(4, gender);
+			pstmt.setString(5, dob);
 			int i = pstmt.executeUpdate();
 			if(i>0) {
 				isSaved = true;
